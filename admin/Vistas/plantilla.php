@@ -58,7 +58,7 @@
         || $_GET["url"] == "galeria" || $_GET["url"] == "tractores" || $_GET["url"] == "mensajes" || $_GET["url"] == "suscriptores"
         || $_GET["url"] == "generales" || $_GET["url"] == "agroquimicos" || $_GET["url"] == "herramientas" || $_GET["url"] == "cotizador"){
           
-          include "modulos/".$_GET["url"].".php";
+          include "Vistas/modulos/".$_GET["url"].".php";
       }
     }else{
       include "modulos/inicio.php";

@@ -14,7 +14,7 @@ class CotizadorC{
 
 					$nombre = mt_rand(10,999);
 
-					$rutaImg = "Vistas/img/tractores/TR".$nombre.".png";
+					$rutaImg = "Vistas/img/cotizaciones/CZ".$nombre.".png";
 
 					$imagen = imagecreatefrompng($_FILES["imagenN"]["tmp_name"]);
 
@@ -27,7 +27,7 @@ class CotizadorC{
 
 					$nombre = mt_rand(10,999);
 
-					$rutaImg = "Vistas/img/tractores/TR".$nombre.".jpeg";
+					$rutaImg = "Vistas/img/cotizaciones/CZ".$nombre.".jpeg";
 
 					$imagen = imagecreatefromjpeg($_FILES["imagenN"]["tmp_name"]);
 
@@ -40,16 +40,17 @@ class CotizadorC{
 
 			$tablaBD = "cotizacion";
 
-			$datosC = array("titulo"=>$_POST["tituloN"], "precio_contado"=>$_POST["precio_contadoN"], 
-			"precio_credito"=>$_POST["precio_creditoN"], "orden"=>$_POST["ordenN"], "imagen"=>$rutaImg);
+			$datosC = array("nombre_producto"=>$_POST["nombre_productoN"], "nombre_marca"=>$_POST["nombre_marcaN"], 
+			"cantidad"=>$_POST["cantidadN"], "precio_contado"=>$_POST["precio_contadoN"], "precio_credito"=>$_POST["precio_creditoN"], 
+			"orden"=>$_POST["ordenN"], "imagen"=>$rutaImg);
 
-			$respuesta = TractorM::CrearTractorM($tablaBD, $datosC);
+			$respuesta = CotizadorM::CrearCotizadorM($tablaBD, $datosC);
 
 			if($respuesta == true){
 
 				echo '<script>
 
-					window.location = "tractores";
+					window.location = "cotizador";
 
 				</script>';
 
@@ -64,34 +65,34 @@ class CotizadorC{
 	}
 
     //Ver catalogo tractores nuevos
-	static public function VerTractorC($item, $valor){
+	static public function VerCotizadorC($item, $valor){
 
-		$respuesta = TractorM::VerTractorM("tractores", $item, $valor);
+		$respuesta = CotizadorM::VerCotizadorM("cotizacion", $item, $valor);
 
 		return $respuesta;
     }
 
     //Borrar tractor de catalogo
-	public function BorrarTractorC(){
+	public function BorrarCotizadorC(){
 
-		if(isset($_GET["Tid"])){
+		if(isset($_GET["Cid"])){
 
-			$tablaBD = "tractores";
-			$id = $_GET["Tid"];
+			$tablaBD = "cotizacion";
+			$id = $_GET["Cid"];
 
-			if($_GET["Timagen"] != ""){
+			if($_GET["Cimagen"] != ""){
 
-				unlink($_GET["Timagen"]);
+				unlink($_GET["Cimagen"]);
 
 			}
 
-			$respuesta = TractorM::BorrarTractorm($tablaBD, $id);
+			$respuesta = CotizadorM::BorrarCotizadorm($tablaBD, $id);
 
 			if($respuesta == true){
 
 				echo '<script>
 
-					window.location = "tractores";
+					window.location = "cotizador";
 
 				</script>';
 
@@ -105,9 +106,9 @@ class CotizadorC{
     }
 
     //Actualizar tractores en catalogo
-	public function ActualizarTractorC(){
+	public function ActualizarCotizadorC(){
 
-		if(isset($_POST["Tid"])){
+		if(isset($_POST["Cid"])){
 
 			$rutaImg = $_POST["imagenA"];
 
@@ -128,7 +129,7 @@ class CotizadorC{
 
 					$nombre = mt_rand(10, 999);
 
-					$rutaImg = "Vistas/img/tractores/TR".$nombre.".png";
+					$rutaImg = "Vistas/img/cotizaciones/CZ".$nombre.".png";
 
 					$imagen = imagecreatefrompng($_FILES["imagenE"]["tmp_name"]);
 
@@ -140,7 +141,7 @@ class CotizadorC{
 
 					$nombre = mt_rand(10, 999);
 
-					$rutaImg = "Vistas/img/tractores/TR".$nombre.".jpg";
+					$rutaImg = "Vistas/img/cotizaciones/CZ".$nombre.".jpg";
 
 					$imagen = imagecreatefromjpeg($_FILES["imagenE"]["tmp_name"]);
 
@@ -151,18 +152,19 @@ class CotizadorC{
 			}
 
 
-			$tablaBD = "tractores";
+			$tablaBD = "cotizacion";
 
-			$datosC = array("id"=>$_POST["Tid"], "titulo"=>$_POST["tituloE"], "titulo_contado"=>$_POST["titulo_contadoE"],
-            "titulo_credito"=>$_POST["titulo_creditoE"], "orden"=>$_POST["ordenE"], "imagen"=>$rutaImg);
+			$datosC = array("id"=>$_POST["Cid"], "nombre_producto"=>$_POST["nombre_productoE"], 
+			"nombre_marca"=>$_POST["nombre_marcaE"], "cantidad"=>$_POST["cantidadE"], "precio_contado"=>$_POST["precio_contadoE"],
+            "precio_credito"=>$_POST["precio_creditoE"], "orden"=>$_POST["ordenE"], "imagen"=>$rutaImg);
 
-			$respuesta = TractorM::ActualizarTractorM($tablaBD, $datosC);
+			$respuesta = CotizadorM::ActualizarCotizadorM($tablaBD, $datosC);
 
 			if($respuesta == true){
 			
 				echo '<script>
 
-					window.location = "tractores";
+					window.location = "cotizador";
 
 				</script>';
 

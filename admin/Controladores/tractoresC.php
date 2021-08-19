@@ -153,8 +153,8 @@ class TractorC{
 
 			$tablaBD = "tractores";
 
-			$datosC = array("id"=>$_POST["Tid"], "titulo"=>$_POST["tituloE"], "titulo_contado"=>$_POST["titulo_contadoE"],
-            "titulo_credito"=>$_POST["titulo_creditoE"], "orden"=>$_POST["ordenE"], "imagen"=>$rutaImg);
+			$datosC = array("id"=>$_POST["Tid"], "titulo"=>$_POST["tituloE"], "precio_contado"=>$_POST["precio_contadoE"],
+            "precio_credito"=>$_POST["precio_creditoE"], "orden"=>$_POST["ordenE"], "imagen"=>$rutaImg);
 
 			$respuesta = TractorM::ActualizarTractorM($tablaBD, $datosC);
 

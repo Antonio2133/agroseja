@@ -27,7 +27,9 @@
                 
                 <th>N°</th>
                 <th>Imagen</th>
-                <th>Titulo</th>
+                <th>Nombre producto</th>
+                <th>Nombre marca</th>
+                <th>Cantidad</th>
                 <th>Precio Contado</th>
                 <th>Precio Crédito</th>
                 <th>Orden</th>
@@ -44,7 +46,7 @@
                 $item = null;
                 $valor = null;
 
-                $verT = CotizadorC::VerCotizadorC($item, $valor);
+                $verC = CotizadorC::VerCotizadorC($item, $valor);
 
                 foreach ($verC as $key => $value) {
                 
@@ -53,7 +55,11 @@
     
                             <td><img src="'.$value["imagen"].'" class="img-thumbnail" width="200px"></td>
     
-                            <td>'.$value["titulo"].'</td>
+                            <td>'.$value["nombre_producto"].'</td>
+
+                            <td>'.$value["nombre_marca"].'</td>
+
+                            <td>'.$value["cantidad"].'</td>
     
                             <td>'.$value["precio_contado"].'</td>
     
@@ -64,11 +70,11 @@
                             <td>
                               <div class="btn-group">
                                 
-                                <button class="btn btn-success EditarTractor" Tid="'.$value["id"].'" 
-                                data-toggle="modal" data-target="#EditarTractor"><i class="fa fa-pencil"></i></button>
+                                <button class="btn btn-success EditarCotizacion" Cid="'.$value["id_producto"].'" 
+                                data-toggle="modal" data-target="#EditarCotizacion"><i class="fa fa-pencil"></i></button>
     
-                                <button class="btn btn-danger BorrarTractor" Tid="'.$value["id"].'" 
-                                Timagen="'.$value["imagen"].'"><i class="fa fa-times"></i></button>
+                                <button class="btn btn-danger BorrarCotizacion" Cid="'.$value["id_producto"].'" 
+                                Cimagen="'.$value["imagen"].'"><i class="fa fa-times"></i></button>
     
                               </div>
                             </td>
@@ -113,9 +119,25 @@
              
             <div class="form-group">
               
-              <h2>Título:</h2>
+              <h2>Nombre producto:</h2>
 
-              <input type="text" class="form-control input-lg" name="tituloN" required>
+              <input type="text" class="form-control input-lg" name="nombre_productoN" required>
+
+            </div>
+
+            <div class="form-group">
+              
+              <h2>Nombre marca:</h2>
+
+              <input type="text" class="form-control input-lg" name="nombre_marcaN" required>
+
+            </div>
+
+            <div class="form-group">
+              
+              <h2>Cantidad:</h2>
+
+              <input type="text" class="form-control input-lg" name="cantidadN" required>
 
             </div>
 
@@ -183,7 +205,7 @@
   </div>
 
 
-<div class="modal fade" role="dialog" id="EditarTractor">
+<div class="modal fade" role="dialog" id="EditarCotizacion">
     
     <div class="modal-dialog">
       
@@ -199,11 +221,31 @@
              
             <div class="form-group">
               
-              <h2>Titulo:</h2>
+              <h2>Nombre producto:</h2>
 
-              <input type="text" class="form-control input-lg" id="tituloE" name="tituloE" required>
+              <input type="text" class="form-control input-lg" id="nombre_productoE" name="nombre_productoE" required>
 
-              <input type="hidden" id="Sid" name="Sid">
+              <input type="hidden" id="Cid" name="Cid">
+
+            </div>
+
+            <div class="form-group">
+              
+              <h2>Nombre marca:</h2>
+
+              <input type="text" class="form-control input-lg" id="nombre_marcaE" name="nombre_marcaE" required>
+
+              <input type="hidden" id="Cid" name="Cid">
+
+            </div>
+
+            <div class="form-group">
+              
+              <h2>Cantidad:</h2>
+
+              <input type="text" class="form-control input-lg" id="cantidadE" name="cantidadE" required>
+
+              <input type="hidden" id="Cid" name="Cid">
 
             </div>
 

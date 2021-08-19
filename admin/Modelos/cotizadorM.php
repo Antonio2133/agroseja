@@ -2,14 +2,16 @@
 
 require_once "ConexionBD.php";
 
-class TractorM extends ConexionBD{
+class CotizadorM extends ConexionBD{
 
-	static public function CrearTractorM($tablaBD, $datosC){
+	static public function CrearCotizadorM($tablaBD, $datosC){
 
-		$pdo = ConexionBD::cBD()->prepare("INSERT INTO $tablaBD (titulo, precio_contado, precio_credito, orden, imagen) 
-        VALUES (:titulo, :precio_contado, :precio_credito, :orden, :imagen)");
+		$pdo = ConexionBD::cBD()->prepare("INSERT INTO $tablaBD (nombre_producto, nombre_marca, cantidad, precio_contado, precio_credito, orden, imagen) 
+        VALUES (:nombre_producto, :nombre_marca, :cantidad, :precio_contado, :precio_credito, :orden, :imagen)");
 
-		$pdo -> bindParam(":titulo", $datosC["titulo"], PDO::PARAM_STR);
+		$pdo -> bindParam(":nombre_producto", $datosC["nombre_producto"], PDO::PARAM_STR);
+		$pdo -> bindParam(":nombre_marca", $datosC["nombre_marca"], PDO::PARAM_STR);
+		$pdo -> bindParam(":cantidad", $datosC["cantidad"], PDO::PARAM_STR);
 		$pdo -> bindParam(":precio_contado", $datosC["precio_contado"], PDO::PARAM_STR);
 		$pdo -> bindParam(":precio_credito", $datosC["precio_credito"], PDO::PARAM_STR);
 		$pdo -> bindParam(":orden", $datosC["orden"], PDO::PARAM_STR);
@@ -26,7 +28,7 @@ class TractorM extends ConexionBD{
 	}
 
     //Ver catalogo tractores
-	static public function VerTractorM($tablaBD, $item, $valor){
+	static public function VerCotizadorM($tablaBD, $item, $valor){
 
 		if($item != null){
 
@@ -53,11 +55,11 @@ class TractorM extends ConexionBD{
 	}
 
     //Borrar tractor de catalogo
-	static public function BorrarTractorm($tablaBD, $id){
+	static public function BorrarCotizadorm($tablaBD, $id){
 
-		$pdo = ConexionBD::cBD()->prepare("DELETE FROM $tablaBD WHERE id = :id");
+		$pdo = ConexionBD::cBD()->prepare("DELETE FROM $tablaBD WHERE id_producto = :id_producto");
 
-		$pdo -> bindParam(":id", $id, PDO::PARAM_INT);
+		$pdo -> bindParam(":id_producto", $id, PDO::PARAM_INT);
 
 		if($pdo -> execute()){
 
@@ -72,7 +74,7 @@ class TractorM extends ConexionBD{
     }
 
     //Actualizar catalogo tractores
-	static public function ActualizarTractorM($tablaBD, $datosC){
+	static public function ActualizarCotizadorM($tablaBD, $datosC){
 
 		$pdo = ConexionBD::cBD()->prepare("UPDATE $tablaBD SET titulo = :titulo, precio_contado = :precio_contado, precio_credito = :precio_credito, 
         orden = :orden, imagen = :imagen WHERE id = :id");

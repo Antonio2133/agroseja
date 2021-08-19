@@ -4,7 +4,7 @@ class PlantillaC{
 
     public function LlamarPlantilla(){
 
-        include "Vistas/plantilla.php";
+        include "./Vistas/plantilla.php";
 
     }
 }

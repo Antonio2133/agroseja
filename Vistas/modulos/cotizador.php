@@ -1,7 +1,7 @@
 <div class="container">
 		  <div class="row-fluid">
 			<div class="col-md-12">
-			<h2><span class="glyphicon glyphicon-edit"></span> Nueva Cotización</h2>
+			<h2><span class="glyphicon glyphicon-edit"></span> Realizar Nueva Cotización</h2>
 			<hr>
 			<form class="form-horizontal" role="form" id="datos_cotizacion">
 				<div class="form-group row">
